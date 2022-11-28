@@ -1,4 +1,5 @@
 // Useful for comparing the number of times something occurs
+
 // For example, we can compare two number arrays, arr1 and arr2, to see if arr2 contains the square of exactly all of arr1 values
 // Time complexity is O(n)
 function same(arr1, arr2) {
@@ -7,19 +8,20 @@ function same(arr1, arr2) {
   const compare = {};
 
   // Count the frequency of all numbers in arr1
+  // In the compare object, number is the key and count is the value
   for (let i = 0; i < arr1.length; i++) {
     const number = arr1[i];
     // If the number exists add one to the count 
-    // If the number doesn't exist add it as a key to our compare object and set value to 1
+    // If the number doesn't exist make the count one
     compare[number] ? compare[number]++ : compare[number] = 1;
   }
 
-  // Compare the square root of each number in arr2 to our compare object
+  // Compare the square root of each number in arr2 to keys in the compare object
   for (let n = 0; n < arr2.length; n++) {
     const number = Math.sqrt(arr2[n]);
-    // Decrement the value in our compare object if the number exists in our compare object
+    // Decrement the value in the compare object if the number exists in the compare object
     if (compare[number]) compare[number]--;
-    // If not, our arrays don't match
+    // The arrays don't match if not
     else return false;
   }
 
