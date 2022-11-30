@@ -28,6 +28,9 @@ function sumZeroRefactor(arr) {
   }
 }
 
+// O(n) time complexity
+// O(n) space complexity
+// This is actually a frequency counter solution...
 function countUniqueValues(arr) {
   let index1 = 0;
   let index2 = 1;
@@ -48,6 +51,8 @@ function countUniqueValues(arr) {
   return total;
 }
 
+// O(n) time complexity
+// O(1) space complexity
 function countUniqueValues2(arr) {
   if (arr.length === 0) return 0;
   let total = 1;
@@ -58,11 +63,26 @@ function countUniqueValues2(arr) {
     if (arr[compare] === arr[search]) {
       search++;
     } else {
-      console.log(compare, search)
       compare = search;
       total++;
     }
   }
 
   return total;
+}
+
+// O(n) time complexity
+// O(1) space complexity
+function countUniqueValues3(arr) {
+  if (arr.length === 0) return 0;
+  let compareIndex = 0;
+
+  for (let searchIndex = 0; searchIndex < arr.length; searchIndex++) {
+    if (arr[compareIndex] !== arr[searchIndex]) {
+      compareIndex++;
+      arr[compareIndex] = arr[searchIndex];
+    }
+  }
+
+  return compareIndex + 1;
 }
