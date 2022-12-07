@@ -4,6 +4,7 @@
 // Then subtract lowest index from sum and add highest index+1 value to the sum
 // Now you have the sum for the next 'window' of digits
 
+// O(n) time complexity
 function maxSum(array, windowSize) {
   if (array.length < windowSize) return undefined;
 
