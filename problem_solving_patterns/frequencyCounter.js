@@ -51,3 +51,39 @@ function isAnagram(word1, word2) {
 
   return true;
 }
+
+function sameFrequency(int1, int2) {
+  int1 = int1.toString();
+  int2 = int2.toString();
+  if (int1.length !== int2.length) return false;
+
+  let compare = {};
+
+  for (let i = 0; i < int1.length; i++) {
+    const num = int1[i];
+    compare[num] ? compare[num]++ : compare[num] = 1;
+  }
+
+  for (let n = 0; n < int2.length; n++) {
+    const num = int2[n];
+    if (compare[num]) compare[num] --
+    else return false;
+  }
+
+  return true;
+}
+
+function areThereDuplicates(...args) {
+  let counter = {};
+  let index = 0;
+
+  while (index < args.length) {
+    let val1 = args[index].toString();
+    if (counter[val1]) return true;
+    else counter[val1] = 1;
+
+    index++
+  }
+
+  return false;
+}

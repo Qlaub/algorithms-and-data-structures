@@ -86,3 +86,45 @@ function countUniqueValues3(arr) {
 
   return compareIndex + 1;
 }
+
+// Time complexity of O(n)
+// space complexity of O(1)
+function averagePair(sortedNumArr, targetAverage){
+  if (sortedNumArr.length < 1) return false;
+
+  let startIndex = 0;
+  let searchIndex = 1;
+
+  function averageTwoNumbers(index1, index2) {
+    const num1 = sortedNumArr[index1];
+    const num2 = sortedNumArr[index2];
+    const average = (num1 + num2) / 2;
+
+    return average;
+  }
+
+  while (searchIndex < sortedNumArr.length && startIndex < sortedNumArr.length) {
+    const average = averageTwoNumbers(startIndex, searchIndex);
+
+    if (average === targetAverage) return true;
+    else if (average > targetAverage) {
+      if (averageTwoNumbers(startIndex, searchIndex-1) < targetAverage) {
+        startIndex++;
+        searchIndex--;
+      } else {
+        searchIndex--;
+      }
+    }
+    else if (average < targetAverage) {
+      if (searchIndex === sortedNumArr.length - 1) {
+        startIndex++;
+      } else {
+        searchIndex++;
+      }
+    }
+  }
+
+  return false;
+}
+
+console.log(averagePair([1,2,3],2.5))
