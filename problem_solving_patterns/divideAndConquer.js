@@ -14,5 +14,5 @@ function binarySearch(sortedArr, val) {
     else if (sortedArr[centerIndex] < val) startIndex = centerIndex + 1;
   }
 
-  return -1
+  return -1;
 }

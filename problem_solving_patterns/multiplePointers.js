@@ -89,6 +89,8 @@ function countUniqueValues3(arr) {
 
 // Time complexity of O(n)
 // space complexity of O(1)
+// Returns true if the target average exists in two numbers in the sorted number array
+// False if it doesn't exist
 function averagePair(sortedNumArr, targetAverage){
   if (sortedNumArr.length < 1) return false;
 
@@ -127,4 +129,53 @@ function averagePair(sortedNumArr, targetAverage){
   return false;
 }
 
-console.log(averagePair([1,2,3],2.5))
+// takes in two strings and checks whether the characters in the first string 
+// form a subsequence of the characters in the second string. 
+// In other words, the function should check whether the characters in the first string 
+// appear somewhere in the second string, without their order changing.
+// O(n + m) time complexity requirement
+// O(1) space complexity requirement
+function isSubsequence(str1, str2) {
+  if (str1.length > str2.length) return false;
+  let pointer1 = 0; // What letter currently being evaluated on str1
+  let pointer2 = 0; // Index where we're currently starting our search on str2
+  let pointer3 = 0; // Index of most recent first letter match between str1 and str2
+
+  function searchForMatch() {
+    for (let i = pointer2; i < str2.length; i++) {
+      if (str2[i] === str1[pointer1]) {
+        pointer2 = i;
+        pointer1++;
+        return;
+      }
+    }
+    pointer1 = 0;
+    return;
+  }
+
+  while (pointer1 < str1.length) {
+    if (pointer3 >= str2.length) return false;
+    searchForMatch();
+
+    if (pointer1 === 0) {
+      pointer3++;
+      pointer2 = pointer3;
+    }
+  }
+
+  return true;
+}
+
+function isSubsequenceRefactor(str1, str2) {
+  let pointer1 = 0; // current index to check in str1
+  let pointer2 = 0; // current index to check in str2
+  if (!str1) return true;
+
+  while (pointer2 < str2.length) {
+    if (str2[pointer2] === str1[pointer1]) pointer1++
+    if (pointer1 === str1.length) return true;
+    pointer2++
+  }
+
+  return false;
+}
