@@ -23,3 +23,41 @@ function countDownIterative(num) {
   }
   console.log('All done!');
 }
+
+// Simple example 2 of recursion
+function sumRange(num) {
+  // Base case
+  if (num === 1) return 1;
+  // Different input
+  return num + sumRange(num - 1);
+}
+
+// Factorial iteratively
+function factorial(num) {
+  let total = 1;
+  for (let i = num; i > 0; i--) {
+    total *= i;
+  }
+  return total;
+}
+
+// Factorial recursively
+function factorialRecursive(num) {
+  if (num === 1) return 1; // Base case
+  return num * (factorialRecursive(num - 1)); // Different input
+}
+
+// Example recursion with helper function
+// Returns array of only the odd values from the given num array
+function collectOddValues(numArr) {
+  let result = [];
+
+  (function helper(numArr) {
+    if (numArr.length === 0) return; // Base case
+    if (numArr[0] % 2 !== 0) result.push(numArr[0]); // Side effect
+    helper(numArr.slice(1)); // Different input
+  })(numArr);
+
+  return result;
+}
+
