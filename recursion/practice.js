@@ -74,6 +74,7 @@ function collectOddValuesPure(numArr) {
   return newArr;
 }
 
+/* EASY PROBLEMS */
 
 // Write a function called power which accepts a base and an exponent. 
 // The function should return the power of the base to the exponent. 
@@ -126,9 +127,47 @@ function recursiveRange(num) {
 // Recall that the Fibonacci sequence is the sequence of whole numbers 1, 1, 2, 3, 5, 8, ... 
 // which starts with 1 and 1, and where every number thereafter is equal to the sum of the previous two numbers.
 function fib(num) {
-  let nthNum = 0;
-  if (num === 0) return nthNum; // base case
+  if (num === 1) return 1; // base case
+  if (num === 0) return 0; // base case
 
+  let nthNum = fib(num - 1) + fib(num - 2); // different input
 
   return nthNum;
+}
+
+
+/* HARDER PROBLEMS */
+
+// Write a recursive function called reverse which accepts a string and returns a new string in reverse.
+function reverse(string) {
+  if (string.length === 1) return string; // base case
+
+  return reverse(string.slice(1)) + string[0]; // different input
+}
+    
+// Write a recursive function called someRecursive which accepts an array and a callback. 
+// The function returns true if a single value in the array returns true when passed to the callback. 
+// Otherwise it returns false.
+function someRecursive(array, callback) {
+  if (array.length === 0) return false;
+
+  const bool = callback(array.shift());
+  return bool || someRecursive(array, callback);
+}
+// SAMPLE INPUT / OUTPUT
+// const isOdd = val => val % 2 !== 0;
+// someRecursive([1,2,3,4], isOdd) // true
+// someRecursive([4,6,8,9], isOdd) // true
+// someRecursive([4,6,8], isOdd) // false
+// someRecursive([4,6,8], val => val > 10); // false
+// ------------------
+
+// Write a recursive function called flatten
+// which accepts an array of arrays and returns a new array with all values flattened.
+function flatten(array) {
+  let newArray = [];
+
+  newArray = newArray.concat(array.shift())
+
+  return flatten(array[0])
 }
