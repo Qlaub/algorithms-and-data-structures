@@ -167,7 +167,19 @@ function someRecursive(array, callback) {
 function flatten(array) {
   let newArray = [];
 
-  newArray = newArray.concat(array.shift())
+  for (let i = 0; i < array.length; i++) {
+    // Indexed item is already flattened
+    if (typeof array[i] === 'number') {
+      newArray.push(array[i]);
+    }
+    // Indexed item needs to be flattened
+    if (typeof array[i] === 'object') {
+      const subArray = flatten(array[i]);
+      newArray = newArray.concat(subArray);
+    }
+  }
 
-  return flatten(array[0])
+  return newArray;
 }
+
+// console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])) // [1,2,3]
