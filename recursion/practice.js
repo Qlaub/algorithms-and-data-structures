@@ -181,5 +181,30 @@ function flatten(array) {
 
   return newArray;
 }
-
 // console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])) // [1,2,3]
+
+// Write a recursive function called isPalindrome 
+// which returns true if the string passed to it is a palindrome 
+// (reads the same forward and backward). Otherwise it returns false.
+function isPalindrome(str) {
+  if (str.length === 1) return true; // base case
+
+  // First and last letters are the same
+  if (str[0] === str[str.length - 1]) {
+    return isPalindrome(str.slice(1, str.length - 1)) // differing input
+  }
+  else return false;
+}
+// console.log(isPalindrome('tacocat')) // true
+
+// Write a recursive function called capitalizeFirst. 
+// Given an array of strings, capitalize the first letter of each string in the array.
+function capitalizeFirst(strArray) {
+  const capitalizedWord = strArray[0][0].toUpperCase() + strArray[0].slice(1);
+  let newArr = [capitalizedWord];
+  if (strArray[1]) { // base case
+    newArr = newArr.concat(capitalizeFirst(strArray.slice(1))); // different input
+  }
+  return newArr;
+}
+// console.log(capitalizeFirst(['car','taco','banana'])); // ['Car','Taco','Banana'])
