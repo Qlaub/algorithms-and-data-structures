@@ -46,3 +46,39 @@ roman_numeral = determine_accidental(roman_numeral, root_note)
 
 print(chord_quality)
 print(roman_numeral)
+
+# Routines for finding the inversion of a chord
+
+def get_root_bass_interval(chord_root, bass_note):
+  note_seq = list("CDEFGABCDEFGA")
+  range_start = note_seq.index(chord_root[0])
+  for j in range(range_start, range_start+7):
+    if bass_note[0] == note_seq[j]:
+      break
+  root_bass_interval = j-range_start+1
+  return root_bass_interval
+
+# chord_root and bass_note expected as a one or two character string
+def get_chord_inversion(chord_root, bass_note, seventh_chord = False):
+  root_bass_interval = get_root_bass_interval(chord_root, bass_note)
+  chord_interval = None
+  if root_bass_interval == 3:
+    if seventh_chord == False:
+      chord_interval = '6'
+    else:
+      chord_interval = '6/5'
+  elif root_bass_interval == 5:
+    if seventh_chord == False:
+      chord_interval = '6/4'
+    else:
+      chord_interval = '4/3'
+  # Non 7th chords can't have a third inversion
+  elif root_bass_interval == 7:
+    chord_interval = '4/2'
+  return chord_interval
+  
+print(get_chord_inversion('A', 'C', True))
+print(get_chord_inversion('A', 'C'))
+print(get_chord_inversion('C#', 'G#'))
+print(get_chord_inversion('C#', 'G#', True))
+print(get_chord_inversion('G', 'F'))
